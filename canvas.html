@@ -71,31 +71,21 @@
 	setup();
 	update = function(){
 		ctx.clearRect(0,0,700,320);
+		ctx.fillStyle = "#3370d4";
 		for(var i = 0; i < boxes.length; i++){
-			ctx.fillStyle = "rgba(0,0,100,1)";
-			// if(boxes[i].x >= 600 || boxes[i].x <= 0) boxes[i].xv *= -1;
+			if(boxes[i].x >= 600 || boxes[i].x <= 0) boxes[i].xv *= -1;
 			ctx.beginPath();
 			ctx.arc(boxes[i].pen(), boxes[i].y+i, boxes[i].side/2, 0, Math.PI*2, true); 
 			ctx.closePath();
 			ctx.fill();
 			ctx.moveTo(hangpt.x,hangpt.y);
 			ctx.lineTo(boxes[i].x, boxes[i].y+i);
-			if(i !== 0){
-				ctx.lineTo(boxes[i-1].x, boxes[i-1].y+i-1);
-				var len = boxes.length;
-				if(boxes[i].x <= boxes[i-1].x){
-					ctx.fillStyle = "rgba(200, 200, 200, "+(len-i)/len+")";
-				}else{
-					ctx.fillStyle = "rgba(10,10,10, "+(len-i)/len+")";
-				}
-				ctx.fill();
-			}
 			ctx.stroke();
 		}
 	}
 
 	var current_setup = setInterval(update, 10);
-	var reset = function(){
+	document.getElementById('resetter').addEventListener('click',function(){
 		clearInterval(current_setup);
 		var el = document.getElementById('canvas');
 		el.parentNode.removeChild(el);
@@ -104,6 +94,5 @@
 		box.gravity = grav;
 		setup(balls);
 		current_setup = setInterval(update, 10);
-	}
-	document.getElementById('resetter').addEventListener('click',reset, false);
+	}, false);
 </script>
