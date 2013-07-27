@@ -2,7 +2,7 @@ canvas_tinkering
 ================
 I recently finished a Udacity course on HTML Game Development w/ Canvas and wanted to make a repo for any canvas tinkering.
 
-canvas.html
+swingingballs.html
 ==========
 http://jsfiddle.net/HBHKe/
 
